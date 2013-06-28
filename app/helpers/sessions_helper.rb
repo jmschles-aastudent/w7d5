@@ -1,6 +1,12 @@
 module SessionsHelper
 
-  def current_user 
+  def require_login
+    unless logged_in?
+      redirect_to new_session_url
+    end
+  end
+
+  def current_user
     @current_user ||= User.find_by_session_token(session[:session_token])
   end
 
@@ -11,7 +17,7 @@ module SessionsHelper
   def login_user(user)
     token = SecureRandom.base64(16)
 
-    user.session_token = token 
+    user.session_token = token
     session[:session_token] = token
     user.save
   end
