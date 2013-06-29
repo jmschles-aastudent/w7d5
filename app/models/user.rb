@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   validates :password, :length => { :minimum => 3 }
 
   has_many :gists, :dependent => :destroy
+  has_many :favourites
+  has_many :favourite_gists, through: :favourites, source: :gist
 
   def password
     @password || self.password_digest

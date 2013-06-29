@@ -1,6 +1,7 @@
 SessionsTemplate.Routers.Gists = Backbone.Router.extend({
 	initialize: function(options){
 		this.$rootEl = options.$rootEl;
+
 	},
 
 	routes: {
@@ -16,7 +17,6 @@ SessionsTemplate.Routers.Gists = Backbone.Router.extend({
 				var index = new SessionsTemplate.Views.GistsIndex({
 					collection: SessionsTemplate.gists
 				});
-				//console.log(that);
 				that.$rootEl.html(index.render().$el);
 			}
 		});
@@ -26,7 +26,12 @@ SessionsTemplate.Routers.Gists = Backbone.Router.extend({
 		var that = this;
 
 		var gist = SessionsTemplate.gists.get(id);
-		console.log(gist);
+		if (!gist) {
+			gist = new SessionsTemplate.Models.Gist({id: id});
+			SessionsTemplate.gists.add(gist);
+			gist.fetch();
+		}
+
 		var show = new SessionsTemplate.Views.GistDetail({
 			model: gist
 		});

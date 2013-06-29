@@ -8,6 +8,10 @@
 
 User.create({ :username => "Stefano", :password => "password" })
 
-Gist.create([{ :title => "gistacular", :user_id => 1 },
-             { :title => "better_gist", :user_id => 1 },
-             { :title => "sweet_gist", :user_id => 1 }, ])
+Gist.create([{ :title => "gistacular", :details => "whoa, check out this gist", :user_id => 1 },
+             { :title => "better_gist", :details => "ummmmmmm", :user_id => 1 },
+             { :title => "sweet_gist", :details => "stefano LOVES this gist", :user_id => 1 }, ])
+
+Favourite.create([
+  {user_id: 1, gist_id: 3}
+])

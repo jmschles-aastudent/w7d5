@@ -8,7 +8,6 @@ SessionsTemplate.Views.GistsIndex = Backbone.View.extend({
 		});
 
 		this.$el.html(content);
-		console.log(this.$el);
 		return this;
 	}
 
